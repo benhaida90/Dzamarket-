@@ -55,7 +55,7 @@ const Home = ({ user, onLogout }) => {
                 onClick={() => setActiveTab(category.id)}
                 className={`whitespace-nowrap ${activeTab === category.id ? 'bg-green-600 hover:bg-green-700' : ''}`}
               >
-                {typeof category.name === 'object' ? category.name[t('common.dzamarket').includes('Market') ? 'en' : t('common.dzamarket').includes('DzaMarket') ? 'ar' : 'fr'] : category.name}
+                {typeof category.name === 'object' ? category.name[i18n.language] || category.name.en : category.name}
               </Button>
             ))}
           </div>
