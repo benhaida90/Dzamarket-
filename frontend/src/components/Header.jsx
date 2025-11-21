@@ -102,23 +102,23 @@ const Header = ({ user, onLogout }) => {
                 <DropdownMenuItem asChild>
                   <Link to={`/seller/${user?.id}`} className="cursor-pointer">
                     <User className="mr-2 h-4 w-4" />
-                    <span>ملفي الشخصي</span>
+                    <span>{t('header.myProfile')}</span>
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link to="/dashboard" className="cursor-pointer">
                     <LayoutDashboard className="mr-2 h-4 w-4" />
-                    <span>لوحة التحكم</span>
+                    <span>{t('header.dashboard')}</span>
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <Settings className="mr-2 h-4 w-4" />
-                  <span>الإعدادات</span>
+                  <span>{t('header.settings')}</span>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={onLogout} className="text-red-600">
                   <LogOut className="mr-2 h-4 w-4" />
-                  <span>تسجيل الخروج</span>
+                  <span>{t('common.logout')}</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
