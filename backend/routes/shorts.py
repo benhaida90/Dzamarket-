@@ -12,8 +12,8 @@ async def get_shorts_feed(
     category: str = None,
     page: int = Query(1, ge=1),
     limit: int = Query(20, ge=1, le=50),
-    user_id: str = Depends(get_current_user),
-    db: AsyncIOMotorDatabase = Depends(get_database)
+    db: AsyncIOMotorDatabase = Depends(get_database),
+    user_id: str = Depends(get_current_user)
 ):
     """Get personalized shorts feed based on user interactions"""
     
