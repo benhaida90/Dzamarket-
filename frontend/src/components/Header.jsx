@@ -36,7 +36,7 @@ const Header = ({ user, onLogout }) => {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
               <Input
                 type="text"
-                placeholder="ابحث عن منتجات، بائعين، أو فئات..."
+                placeholder={t('common.search')}
                 className="pl-10 w-full"
               />
             </div>
@@ -44,10 +44,13 @@ const Header = ({ user, onLogout }) => {
 
           {/* Actions */}
           <div className="flex items-center gap-3">
+            {/* Language Switcher */}
+            <LanguageSwitcher />
+            
             {/* Add Product Button */}
             <Button className="bg-green-600 hover:bg-green-700 text-white gap-2">
               <Plus className="h-4 w-4" />
-              <span className="hidden sm:inline">إضافة منتج</span>
+              <span className="hidden sm:inline">{t('common.addProduct')}</span>
             </Button>
 
             {/* Notifications */}
