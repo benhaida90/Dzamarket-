@@ -4,7 +4,7 @@ import { Avatar, AvatarImage, AvatarFallback } from './ui/avatar';
 import { Input } from './ui/input';
 import { 
   Store, Search, Bell, MessageSquare, Plus, 
-  LayoutDashboard, LogOut, User, Settings, Crown
+  LayoutDashboard, LogOut, User, Settings, Crown, Video
 } from 'lucide-react';
 import {
   DropdownMenu,
