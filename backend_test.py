@@ -309,7 +309,7 @@ def test_register_buyer():
                 
                 # Login the buyer to get token
                 login_data = {
-                    "email": TEST_BUYER_DATA["email"],
+                    "email": unique_email,
                     "password": TEST_BUYER_DATA["password"]
                 }
                 
