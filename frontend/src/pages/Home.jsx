@@ -11,8 +11,10 @@ import {
   TrendingUp, Sparkles, Clock
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Home = ({ user, onLogout }) => {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState('all');
   const [likedProducts, setLikedProducts] = useState([]);
 
