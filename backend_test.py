@@ -288,10 +288,15 @@ def test_register_buyer():
     print("🔍 Testing Buyer Registration...")
     
     try:
+        # Use a unique email for each test run
+        import time
+        unique_email = f"fatima.buyer.{int(time.time())}@example.com"
+        buyer_data = {**TEST_BUYER_DATA, "email": unique_email}
+        
         response = requests.post(
             f"{BASE_URL}/auth/register",
             headers=HEADERS,
-            json=TEST_BUYER_DATA,
+            json=buyer_data,
             timeout=10
         )
         
