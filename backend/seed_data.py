@@ -146,10 +146,14 @@ async def seed_database():
                 "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800",
                 "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800"
             ],
+            "videos": [
+                "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+            ],
             "location": "Constantine, Algeria",
             "status": "available",
             "likes": 156,
             "views": 2890,
+            "video_views": 890,
             "comments_count": 45,
             "created_at": datetime.utcnow(),
             "updated_at": datetime.utcnow()
