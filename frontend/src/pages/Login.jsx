@@ -21,20 +21,33 @@ const Login = ({ onLogin }) => {
     e.preventDefault();
     setLoading(true);
 
-    // Mock login - في الإصدار النهائي سيتم استبدال هذا بـ API حقيقي
-    setTimeout(() => {
-      if (email && password) {
-        const token = 'mock_jwt_token_' + Date.now();
-        localStorage.setItem('dzamarket_token', token);
-        localStorage.setItem('dzamarket_user', JSON.stringify(mockUser));
-        onLogin(mockUser);
+    try {
+      const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+      const response = await fetch(`${BACKEND_URL}/api/auth/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        localStorage.setItem('dzamarket_token', data.token);
+        localStorage.setItem('dzamarket_user', JSON.stringify(data.user));
+        onLogin(data.user);
         toast.success(t('toast.loginSuccess'));
         navigate('/');
       } else {
-        toast.error(t('toast.fillAllFields'));
+        toast.error(data.error?.message || t('toast.fillAllFields'));
       }
+    } catch (error) {
+      console.error('Login error:', error);
+      toast.error('Login failed. Please try again.');
+    } finally {
       setLoading(false);
-    }, 1000);
+    }
   };
 
   return (
