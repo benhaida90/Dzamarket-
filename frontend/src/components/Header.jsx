@@ -47,6 +47,13 @@ const Header = ({ user, onLogout }) => {
             {/* Language Switcher */}
             <LanguageSwitcher />
             
+            {/* Shorts/Videos Button */}
+            <Link to="/shorts">
+              <Button variant="ghost" size="icon" className="relative" title="Short Videos">
+                <Video className="h-5 w-5" />
+              </Button>
+            </Link>
+            
             {/* Add Product Button */}
             <Button className="bg-green-600 hover:bg-green-700 text-white gap-2">
               <Plus className="h-4 w-4" />
