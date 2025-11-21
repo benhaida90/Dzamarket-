@@ -46,7 +46,7 @@ const Home = ({ user, onLogout }) => {
               onClick={() => setActiveTab('all')}
               className={activeTab === 'all' ? 'bg-green-600 hover:bg-green-700' : ''}
             >
-              الكل
+              {t('categories.all')}
             </Button>
             {mockCategories.map((category) => (
               <Button
@@ -66,15 +66,15 @@ const Home = ({ user, onLogout }) => {
           <TabsList className="grid w-full max-w-md grid-cols-3 mx-auto">
             <TabsTrigger value="recent" className="gap-2">
               <Clock className="h-4 w-4" />
-              الأحدث
+              {t('filters.recent')}
             </TabsTrigger>
             <TabsTrigger value="trending" className="gap-2">
               <TrendingUp className="h-4 w-4" />
-              الأكثر رواجا
+              {t('filters.trending')}
             </TabsTrigger>
             <TabsTrigger value="featured" className="gap-2">
               <Sparkles className="h-4 w-4" />
-              مميزة
+              {t('filters.featured')}
             </TabsTrigger>
           </TabsList>
         </Tabs>
