@@ -46,7 +46,7 @@ const Home = ({ user, onLogout }) => {
   };
 
   // Load products on mount
-  useState(() => {
+  useEffect(() => {
     fetchProducts();
   }, []);
 
