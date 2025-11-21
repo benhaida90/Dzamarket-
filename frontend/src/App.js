@@ -8,6 +8,7 @@ import Register from './pages/Register';
 import ProductDetail from './pages/ProductDetail';
 import SellerProfile from './pages/SellerProfile';
 import Dashboard from './pages/Dashboard';
+import Shorts from './pages/Shorts';
 import { Toaster } from './components/ui/sonner';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
