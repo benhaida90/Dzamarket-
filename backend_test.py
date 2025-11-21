@@ -141,9 +141,8 @@ def test_validate_referral():
     try:
         # Test with invalid referral code
         response = requests.post(
-            f"{BASE_URL}/auth/validate-referral",
+            f"{BASE_URL}/auth/validate-referral?referral_code=INVALID123",
             headers=HEADERS,
-            json="INVALID123",
             timeout=10
         )
         
