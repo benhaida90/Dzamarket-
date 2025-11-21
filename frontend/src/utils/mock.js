@@ -119,14 +119,86 @@ export const mockProducts = [
 ];
 
 export const mockCategories = [
-  { id: 'electronics', name: 'الإلكترونيات', icon: 'Smartphone', count: 1234 },
-  { id: 'vehicles', name: 'السيارات', icon: 'Car', count: 890 },
-  { id: 'real-estate', name: 'العقارات', icon: 'Home', count: 567 },
-  { id: 'animals', name: 'الحيوانات', icon: 'Dog', count: 234 },
-  { id: 'furniture', name: 'الأثاث', icon: 'Armchair', count: 456 },
-  { id: 'clothing', name: 'الملابس', icon: 'Shirt', count: 789 },
-  { id: 'food', name: 'المواد الغذائية', icon: 'UtensilsCrossed', count: 345 },
-  { id: 'crafts', name: 'الحرف اليدوية', icon: 'Sparkles', count: 123 }
+  { 
+    id: 'electronics', 
+    name: {
+      ar: 'الإلكترونيات',
+      fr: 'Électronique',
+      en: 'Electronics'
+    },
+    icon: 'Smartphone', 
+    count: 1234 
+  },
+  { 
+    id: 'vehicles', 
+    name: {
+      ar: 'السيارات',
+      fr: 'Véhicules',
+      en: 'Vehicles'
+    },
+    icon: 'Car', 
+    count: 890 
+  },
+  { 
+    id: 'real-estate', 
+    name: {
+      ar: 'العقارات',
+      fr: 'Immobilier',
+      en: 'Real Estate'
+    },
+    icon: 'Home', 
+    count: 567 
+  },
+  { 
+    id: 'animals', 
+    name: {
+      ar: 'الحيوانات',
+      fr: 'Animaux',
+      en: 'Animals'
+    },
+    icon: 'Dog', 
+    count: 234 
+  },
+  { 
+    id: 'furniture', 
+    name: {
+      ar: 'الأثاث',
+      fr: 'Meubles',
+      en: 'Furniture'
+    },
+    icon: 'Armchair', 
+    count: 456 
+  },
+  { 
+    id: 'clothing', 
+    name: {
+      ar: 'الملابس',
+      fr: 'Vêtements',
+      en: 'Clothing'
+    },
+    icon: 'Shirt', 
+    count: 789 
+  },
+  { 
+    id: 'food', 
+    name: {
+      ar: 'المواد الغذائية',
+      fr: 'Alimentation',
+      en: 'Food'
+    },
+    icon: 'UtensilsCrossed', 
+    count: 345 
+  },
+  { 
+    id: 'crafts', 
+    name: {
+      ar: 'الحرف اليدوية',
+      fr: 'Artisanat',
+      en: 'Crafts'
+    },
+    icon: 'Sparkles', 
+    count: 123 
+  }
 ];
 
 export const mockUser = {
