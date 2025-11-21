@@ -40,6 +40,7 @@ class ProductCreate(BaseModel):
     price: float
     category: str
     images: List[str]
+    videos: List[str] = []
     location: str
 
 class ProductUpdate(BaseModel):
