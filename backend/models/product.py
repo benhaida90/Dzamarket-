@@ -12,10 +12,12 @@ class Product(BaseModel):
     currency: str = "DZD"
     category: str
     images: List[str] = []
+    videos: List[str] = []  # Short video URLs
     location: str
     status: str = "available"  # available, sold, pending
     likes: int = 0
     views: int = 0
+    video_views: int = 0  # Track video views separately
     comments_count: int = 0
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
