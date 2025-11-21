@@ -28,6 +28,28 @@ const Home = ({ user, onLogout }) => {
     }
   };
 
+  // Fetch products from API
+  const fetchProducts = async () => {
+    setLoading(true);
+    try {
+      const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+      const response = await fetch(`${BACKEND_URL}/api/products`);
+      const data = await response.json();
+      if (data.success && data.data.items.length > 0) {
+        setProducts(data.data.items);
+      }
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      // Keep using mock data on error
+    }
+    setLoading(false);
+  };
+
+  // Load products on mount
+  useState(() => {
+    fetchProducts();
+  }, []);
+
   const formatPrice = (price) => {
     return new Intl.NumberFormat('ar-DZ', {
       style: 'decimal',
