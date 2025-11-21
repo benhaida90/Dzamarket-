@@ -41,6 +41,7 @@ async def root():
 api_router.include_router(auth.router)
 api_router.include_router(products.router)
 api_router.include_router(payments.router)
+api_router.include_router(shorts.router)
 
 # Include the router in the main app
 app.include_router(api_router)
