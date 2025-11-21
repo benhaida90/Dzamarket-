@@ -6,9 +6,12 @@ import { Button } from '../components/ui/button';
 import { Label } from '../components/ui/label';
 import { toast } from 'sonner';
 import { Store, Mail, Lock, User, Phone, MapPin } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from '../components/LanguageSwitcher';
 
 const Register = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -30,7 +33,7 @@ const Register = () => {
     e.preventDefault();
     
     if (formData.password !== formData.confirmPassword) {
-      toast.error('كلمة المرور غير متطابقة');
+      toast.error(t('toast.passwordMismatch'));
       return;
     }
 
@@ -38,7 +41,7 @@ const Register = () => {
 
     // Mock registration - سيتم استبدال هذا بـ API حقيقي
     setTimeout(() => {
-      toast.success('تم إنشاء الحساب بنجاح! يمكنك الآن تسجيل الدخول');
+      toast.success(t('toast.registerSuccess'));
       navigate('/login');
       setLoading(false);
     }, 1000);
@@ -47,33 +50,38 @@ const Register = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 to-white p-4">
       <div className="w-full max-w-lg">
+        {/* Language Switcher */}
+        <div className="flex justify-end mb-4">
+          <LanguageSwitcher />
+        </div>
+
         {/* Logo */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2 mb-2">
             <Store className="h-10 w-10 text-green-600" />
-            <h1 className="text-4xl font-bold text-gray-900">DzaMarket</h1>
+            <h1 className="text-4xl font-bold text-gray-900">{t('common.dzamarket')}</h1>
           </div>
-          <p className="text-gray-600">انضم إلى مجتمع التجارة الإلكترونية</p>
+          <p className="text-gray-600">{t('common.tagline')}</p>
         </div>
 
         <Card className="shadow-lg border-0">
           <CardHeader className="space-y-1">
-            <CardTitle className="text-2xl font-bold text-center">إنشاء حساب جديد</CardTitle>
+            <CardTitle className="text-2xl font-bold text-center">{t('auth.registerTitle')}</CardTitle>
             <CardDescription className="text-center">
-              املأ النموذج للانضمام إلى DzaMarket
+              {t('auth.registerDesc')}
             </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="name">الاسم الكامل</Label>
+                <Label htmlFor="name">{t('auth.fullName')}</Label>
                 <div className="relative">
                   <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                   <Input
                     id="name"
                     name="name"
                     type="text"
-                    placeholder="يوسف بن محمد"
+                    placeholder="Youcef Ben Mohamed"
                     value={formData.name}
                     onChange={handleChange}
                     className="pl-10"
@@ -83,7 +91,7 @@ const Register = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="email">البريد الإلكتروني</Label>
+                <Label htmlFor="email">{t('auth.email')}</Label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                   <Input
@@ -100,7 +108,7 @@ const Register = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="phone">رقم الهاتف</Label>
+                <Label htmlFor="phone">{t('auth.phone')}</Label>
                 <div className="relative">
                   <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                   <Input
@@ -117,14 +125,14 @@ const Register = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="location">المدينة</Label>
+                <Label htmlFor="location">{t('auth.city')}</Label>
                 <div className="relative">
                   <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                   <Input
                     id="location"
                     name="location"
                     type="text"
-                    placeholder="الجزائر العاصمة"
+                    placeholder="Algiers"
                     value={formData.location}
                     onChange={handleChange}
                     className="pl-10"
@@ -134,7 +142,7 @@ const Register = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="password">كلمة المرور</Label>
+                <Label htmlFor="password">{t('auth.password')}</Label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                   <Input
@@ -151,7 +159,7 @@ const Register = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="confirmPassword">تأكيد كلمة المرور</Label>
+                <Label htmlFor="confirmPassword">{t('auth.confirmPassword')}</Label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                   <Input
@@ -172,15 +180,15 @@ const Register = () => {
                 className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold"
                 disabled={loading}
               >
-                {loading ? 'جاري التسجيل...' : 'إنشاء الحساب'}
+                {loading ? t('common.loading') : t('common.register')}
               </Button>
             </form>
 
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-600">
-                لديك حساب بالفعل؟{' '}
+                {t('auth.haveAccount')}{' '}
                 <Link to="/login" className="text-green-600 hover:text-green-700 font-semibold">
-                  سجل الدخول
+                  {t('auth.loginNow')}
                 </Link>
               </p>
             </div>
@@ -188,7 +196,7 @@ const Register = () => {
         </Card>
 
         <p className="text-center text-sm text-gray-500 mt-6">
-          © 2025 DzaMarket. جميع الحقوق محفوظة.
+          © 2025 {t('common.dzamarket')}. {t('common.allRightsReserved')}
         </p>
       </div>
     </div>
