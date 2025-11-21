@@ -122,10 +122,14 @@ async def seed_database():
                 "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=800",
                 "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800"
             ],
+            "videos": [
+                "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            ],
             "location": "Algiers, Algeria",
             "status": "available",
             "likes": 45,
             "views": 567,
+            "video_views": 234,
             "comments_count": 12,
             "created_at": datetime.utcnow(),
             "updated_at": datetime.utcnow()
