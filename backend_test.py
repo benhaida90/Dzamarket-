@@ -478,6 +478,7 @@ def run_all_tests():
     test_results.append(("Create Product", test_create_product()))
     test_results.append(("Get Products", test_get_products()))
     test_results.append(("Get Product Details", test_get_product_details()))
+    test_results.append(("Buyer Registration", test_register_buyer()))
     test_results.append(("Create Escrow Payment", test_create_escrow_payment()))
     test_results.append(("Get Referral Earnings", test_get_referral_earnings()))
     test_results.append(("Get User Transactions", test_get_user_transactions()))
