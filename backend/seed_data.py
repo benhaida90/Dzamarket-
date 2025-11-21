@@ -208,10 +208,14 @@ async def seed_database():
             "images": [
                 "https://images.unsplash.com/photo-1583537031470-89019dd84df4?w=800"
             ],
+            "videos": [
+                "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+            ],
             "location": "Tipaza, Algeria",
             "status": "available",
             "likes": 34,
             "views": 345,
+            "video_views": 156,
             "comments_count": 8,
             "created_at": datetime.utcnow(),
             "updated_at": datetime.utcnow()
