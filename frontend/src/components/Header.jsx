@@ -132,7 +132,7 @@ const Header = ({ user, onLogout }) => {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
           <Input
             type="text"
-            placeholder="ابحث..."
+            placeholder={t('common.search')}
             className="pl-10 w-full"
           />
         </div>
