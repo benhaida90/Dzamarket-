@@ -51,17 +51,32 @@ const Shorts = ({ user }) => {
   const fetchVideos = async () => {
     try {
       const token = localStorage.getItem('dzamarket_token');
+      if (!token) {
+        console.error('No token found!');
+        toast.error('Please login first');
+        navigate('/login');
+        return;
+      }
+      
+      console.log('Fetching videos with token:', token.substring(0, 20) + '...');
       const response = await axios.get(
         `${API}/shorts/feed${selectedCategory ? `?category=${selectedCategory}` : ''}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       
+      console.log('Videos response:', response.data);
       if (response.data.success) {
         setVideos(response.data.data.products);
+        console.log(`Loaded ${response.data.data.products.length} videos`);
       }
     } catch (error) {
       console.error('Error fetching videos:', error);
-      toast.error('Failed to load videos');
+      if (error.response?.status === 401) {
+        toast.error('Session expired. Please login again.');
+        navigate('/login');
+      } else {
+        toast.error('Failed to load videos');
+      }
     }
   };
 
