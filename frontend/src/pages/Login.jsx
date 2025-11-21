@@ -1,0 +1,126 @@
+import { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
+import { Input } from '../components/ui/input';
+import { Button } from '../components/ui/button';
+import { Label } from '../components/ui/label';
+import { toast } from 'sonner';
+import { mockUser } from '../utils/mock';
+import { Store, Mail, Lock } from 'lucide-react';
+
+const Login = ({ onLogin }) => {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    // Mock login - في الإصدار النهائي سيتم استبدال هذا بـ API حقيقي
+    setTimeout(() => {
+      if (email && password) {
+        const token = 'mock_jwt_token_' + Date.now();
+        localStorage.setItem('dzamarket_token', token);
+        localStorage.setItem('dzamarket_user', JSON.stringify(mockUser));
+        onLogin(mockUser);
+        toast.success('تم تسجيل الدخول بنجاح!');
+        navigate('/');
+      } else {
+        toast.error('الرجاء إدخال البريد الإلكتروني وكلمة المرور');
+      }
+      setLoading(false);
+    }, 1000);
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 to-white p-4">
+      <div className="w-full max-w-md">
+        {/* Logo */}
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center gap-2 mb-2">
+            <Store className="h-10 w-10 text-green-600" />
+            <h1 className="text-4xl font-bold text-gray-900">DzaMarket</h1>
+          </div>
+          <p className="text-gray-600">السوق الاجتماعي للجزائر</p>
+        </div>
+
+        <Card className="shadow-lg border-0">
+          <CardHeader className="space-y-1">
+            <CardTitle className="text-2xl font-bold text-center">تسجيل الدخول</CardTitle>
+            <CardDescription className="text-center">
+              أدخل بريدك الإلكتروني وكلمة المرور للدخول
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="email">البريد الإلكتروني</Label>
+                <div className="relative">
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="example@email.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="pl-10"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="password">كلمة المرور</Label>
+                <div className="relative">
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                  <Input
+                    id="password"
+                    type="password"
+                    placeholder="••••••••"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="pl-10"
+                    required
+                  />
+                </div>
+              </div>
+
+              <Button 
+                type="submit" 
+                className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold"
+                disabled={loading}
+              >
+                {loading ? 'جاري تسجيل الدخول...' : 'تسجيل الدخول'}
+              </Button>
+            </form>
+
+            <div className="mt-6 text-center">
+              <p className="text-sm text-gray-600">
+                ليس لديك حساب؟{' '}
+                <Link to="/register" className="text-green-600 hover:text-green-700 font-semibold">
+                  سجل الآن
+                </Link>
+              </p>
+            </div>
+
+            {/* Demo credentials */}
+            <div className="mt-6 p-3 bg-green-50 rounded-lg border border-green-200">
+              <p className="text-xs text-green-800 text-center">
+                <strong>للتجربة:</strong> أدخل أي بريد إلكتروني وكلمة مرور
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Footer */}
+        <p className="text-center text-sm text-gray-500 mt-6">
+          © 2025 DzaMarket. جميع الحقوق محفوظة.
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default Login;
