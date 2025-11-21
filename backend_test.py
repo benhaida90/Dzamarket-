@@ -22,6 +22,14 @@ TEST_USER_DATA = {
     "location": "Algiers, Algeria"
 }
 
+TEST_BUYER_DATA = {
+    "name": "Fatima Buyer User",
+    "email": "fatima.buyer@example.com", 
+    "phone": "+213555333444",
+    "password": "buyerpassword123",
+    "location": "Oran, Algeria"
+}
+
 TEST_PRODUCT_DATA = {
     "title": "Test Product Samsung Phone",
     "description": "This is a test product for API testing",
