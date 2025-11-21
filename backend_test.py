@@ -41,7 +41,9 @@ TEST_PRODUCT_DATA = {
 
 # Global variables to store test results
 auth_token = None
+buyer_token = None
 user_id = None
+buyer_id = None
 product_id = None
 transaction_id = None
 
