@@ -172,7 +172,7 @@ const Home = ({ user, onLogout }) => {
         {/* Load More */}
         <div className="text-center mt-8">
           <Button variant="outline" size="lg" className="min-w-[200px]">
-            تحميل المزيد
+            {t('common.viewMore')}
           </Button>
         </div>
       </main>
