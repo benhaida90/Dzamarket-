@@ -78,6 +78,14 @@ function App() {
                 <Navigate to="/login" />
             } 
           />
+          <Route 
+            path="/shorts" 
+            element={
+              isAuthenticated ? 
+                <Shorts user={user} /> : 
+                <Navigate to="/login" />
+            } 
+          />
         </Routes>
       </BrowserRouter>
       <Toaster />
