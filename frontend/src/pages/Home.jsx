@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import { Card } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
