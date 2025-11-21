@@ -17,6 +17,8 @@ const Home = ({ user, onLogout }) => {
   const { t, i18n } = useTranslation();
   const [activeTab, setActiveTab] = useState('all');
   const [likedProducts, setLikedProducts] = useState([]);
+  const [products, setProducts] = useState(mockProducts);
+  const [loading, setLoading] = useState(false);
 
   const toggleLike = (productId) => {
     if (likedProducts.includes(productId)) {
