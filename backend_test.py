@@ -272,19 +272,75 @@ def test_get_product_details():
         print_test_result("Get Product Details", False, f"Exception: {str(e)}")
         return False
 
+def test_register_buyer():
+    """Register a second user to act as buyer"""
+    global buyer_id, buyer_token
+    print("🔍 Testing Buyer Registration...")
+    
+    try:
+        response = requests.post(
+            f"{BASE_URL}/auth/register",
+            headers=HEADERS,
+            json=TEST_BUYER_DATA,
+            timeout=10
+        )
+        
+        success = response.status_code in [200, 201]
+        
+        if success:
+            data = response.json()
+            if data.get("success") and data.get("data", {}).get("userId"):
+                buyer_id = data["data"]["userId"]
+                
+                # Login the buyer to get token
+                login_data = {
+                    "email": TEST_BUYER_DATA["email"],
+                    "password": TEST_BUYER_DATA["password"]
+                }
+                
+                login_response = requests.post(
+                    f"{BASE_URL}/auth/login",
+                    headers=HEADERS,
+                    json=login_data,
+                    timeout=10
+                )
+                
+                if login_response.status_code == 200:
+                    login_data_resp = login_response.json()
+                    if login_data_resp.get("success") and login_data_resp.get("token"):
+                        buyer_token = login_data_resp["token"]
+                        details = f"Buyer ID: {buyer_id}, Token obtained"
+                    else:
+                        success = False
+                        details = "Failed to get buyer token"
+                else:
+                    success = False
+                    details = f"Buyer login failed: {login_response.status_code}"
+            else:
+                success = False
+                details = f"Invalid response structure: {data}"
+        else:
+            details = f"Status Code: {response.status_code}, Response: {response.text}"
+            
+        print_test_result("Buyer Registration", success, details)
+        return success
+    except Exception as e:
+        print_test_result("Buyer Registration", False, f"Exception: {str(e)}")
+        return False
+
 def test_create_escrow_payment():
     """Test create escrow payment endpoint (requires auth)"""
     global transaction_id
     print("🔍 Testing Create Escrow Payment...")
     
-    if not auth_token or not product_id:
-        print_test_result("Create Escrow Payment", False, "Missing auth token or product ID")
+    if not buyer_token or not product_id:
+        print_test_result("Create Escrow Payment", False, "Missing buyer token or product ID")
         return False
     
     try:
         auth_headers = {
             **HEADERS,
-            "Authorization": f"Bearer {auth_token}"
+            "Authorization": f"Bearer {buyer_token}"
         }
         
         payment_data = {
