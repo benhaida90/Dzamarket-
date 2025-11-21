@@ -105,7 +105,7 @@ const Home = ({ user, onLogout }) => {
 
         {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {mockProducts.map((product) => (
+          {products.map((product) => (
             <Card key={product.id} className="overflow-hidden hover:shadow-lg transition-shadow product-card border-0">
               {/* Product Image */}
               <Link to={`/product/${product.id}`}>
